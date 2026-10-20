@@ -34,9 +34,9 @@ for key , value in dict_a.items() :
 array = [ ]
 for i in range( 0 , 21 , 2 ) :
     array.append( i )
-# 방법2]  리스트변수 = [ 값 for 반복변수 in range( ) ]
+# 방법2]  리스트변수 = [ 저장할값 for 반복변수 in range( ) ]
 array = [ i for i in range( 0 , 21 , 2 ) ]
-# 활용 : 10 제외한 , 리스트변수 = [ 값 for 반복변수 in range( ) if 조건식 ]
+# 활용 : 10 제외한 , 리스트변수 = [ 저장할값 for 반복변수 in range( ) if 조건식 ]
 array = [ 
     i 
     for i in range( 0 , 21 , 2 ) 
