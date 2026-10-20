@@ -7,6 +7,7 @@ print( sum( numbers ) ) # sum( 리스트 ) 합계
 # p.252 revered( 리스트 )
 numbers_revered = reversed( numbers ) # 리스트 뒤집기
 print( numbers_revered ) 
+# print( next(numbers_revered ) )
 print( list( numbers_revered ) )
 # int( ) float( ) str( ) list( ) : 특정 타입으로 변환 함수
 
