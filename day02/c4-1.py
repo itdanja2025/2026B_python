@@ -33,24 +33,46 @@ list_c = [ 1 , 2 ]
 list_c + [3]        # 방법1] [ 1,2,3 ] 새로운리스트 생성 , list_c 변화 없다.
 list_c.append(3)    # 방법2] [ 1,2,3 ] 기존 리스트 포함 , list_c 변화 있다.
 
+#p.202 요소 삭제하기 , del 리스트명[인덱스], 리스트명.pop( 인덱스 ) 
+list_a = [ 1, 2, 3, 4, 5 ]
+del list_a[1]       # 1번 인덱스 삭제
+print( list_a ) # [1, 3, 4, 5]
+list_a.pop( 2 )     # 2번 인덱스 삭제
+print( list_a ) # [1, 3, 5]
+del list_a[ 0 : 2 ] # del 키워드 이용한 슬라이싱 삭제
+print( list_a ) # [5]
+# 리스트명.remove( 값 )
+list_a.remove( 5 ) # (5)값 삭제
+print( list_a ) # [ ]
+# 리스트명.clear()
+list_a.clear()
 
+# p.204 슬라이싱, [ 시작인덱스 : 끝인덱스 : 단계 ]
+numbers = [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+print( numbers[ 0 : 5 : 2 ] )  # 0번 부터 5-1번 까지 2씩 증가 # [ 1,3,5 ]
+print( numbers[ :  : -1 ] ) # 시작인덱스 생략시 0 , 끝인덱스 생략시 마지막인덱스 , -1(역순)
 
+# p.205 정렬 , 리스트명.sort( ) , 리스트명.sort( reverse=True )
+list_e = [ 52, 273, 103, 32, 275, 1, 7 ]
+list_e.sort()
+print( list_e ) # [1, 7, 32, 52, 103, 273, 275]
+list_e.sort( reverse=True )
+print( list_e ) # [275, 273, 103, 52, 32, 7, 1]
+# p.206 내부확인, 찾을값 in 리스트 
+print( 52 in list_e ) # True
+print( 51 in list_e ) # False
+print( 52 not in list_e ) # True -> False
+print( 51 not in list_e ) # False -> True
+# p.208 리스트와 반복문 , 리스트내 요소들이 순차적인 인덱스 구조 
+# for 반복변수 in 반복가능한자료 :
+#       실행코드
+for i in list_e :         # vs for( int i = 0 ; i<list_e.size ; i++ ){ }
+    print( i )
+for char in "안녕하세요" : # 문자열도 리스트/배열이다.
+    print( char )
+# - 종이에 코드와 이름 작성 후 제출 
+# 1. 자바 구구단 작성
+# 2. 파이썬 구구단 작성
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 전개연산자 , 리스트명 앞에 * 붙인다.
+print( *list_e )
