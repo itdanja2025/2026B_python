@@ -38,8 +38,57 @@ def call_10_items( func ) : # 값 대신에 함수 받기
 def print_hello() : 
     print( "안녕하세요")
 
-call_10_items( print_hello() )  #  print_hello() 결과값 전달 
+call_10_items( print_hello() )  #  print_hello() 함수 실행 결과값 전달 
 call_10_items( print_hello )    #  print_hello 함수 (그자체)정보 전달 
+
+# p.323
+# java : 리스트.stream.forEach( ), 리스트.stream.map( ), 리스트.stream.filter( )
+# react : 리스트.forEach( ) , 리스트.map( ) , 리스트.filter( )
+# python : for x in 리스트 , map( 코드 , 리스트 ) , filter( 코드 , 리스트 )
+# forEach 단순반복(return없다), map 반복+반환(return있다), filter 반복+(참이면)반환
+# 예제
+def power( item ) : 
+    return item * item
+def under_3( item ) : 
+    return item < 3 
+list_a = [ 1, 2, 3, 4, 5]
+output_a = map( power , list_a )  # py map
+print( list( output_a ) )
+# JS map : list_a.map( power )  , list_a.map( x -> return x*x )
+output_b = filter( under_3 , list_a ) # py filter
+print( list( output_b ) )
+# JS filter : list_a.filter( under_3 ) , list_a.filter( x -> return x < 3 )
+
+# p.324 람다(화살표함수)? 코드 줄이기
+# lambda 매개변수 : 리턴값   PY : def 함수명():
+# JAVA람다 : ( ) -> { }     JAVA: public void 함수명( ){ } 
+# JS람다 : ( ) => { }       JS: function 함수명( ){ }
+power = lambda item : item*item
+output_a = map( power , list_a )
+# 인라인 람다
+output_a = map( lambda item : item*item , list_a )
+# JS 1 -----------------------------------------------------------
+# const power = ( item ) => { return item*item }
+# list_a.map( power )
+# JS 2 ---------------------------
+# list_a.map( (item)=>{ return item*item } )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
