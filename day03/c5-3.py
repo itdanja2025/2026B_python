@@ -8,7 +8,7 @@ tuple_test = ( 10,20,30 )
 #2. 요소값 호출
 print( tuple_test[0] , tuple_test[2] )
 #3. 요소값 수정 , 불가능 
-tuple_test[0] = 40  
+# tuple_test[0] = 40  
 #4. 요소값 하나인 경우
 tuple_test2 =  (273,)  # 뒤에,쉼표 없으면 일반값 취급
 print( tuple_test2 )
@@ -38,7 +38,7 @@ def call_10_items( func ) : # 값 대신에 함수 받기
 def print_hello() : 
     print( "안녕하세요")
 
-call_10_items( print_hello() )  #  print_hello() 함수 실행 결과값 전달 
+#call_10_items( print_hello() )  #  print_hello() 함수 실행 결과값 전달 
 call_10_items( print_hello )    #  print_hello 함수 (그자체)정보 전달 
 
 # p.323
