@@ -65,8 +65,10 @@ print( list( output_b ) )
 # JS람다 : ( ) => { }       JS: function 함수명( ){ }
 power = lambda item : item*item
 output_a = map( power , list_a )
+print( list(output_a) )
 # 인라인 람다
 output_a = map( lambda item : item*item , list_a )
+print( list( output_a ) )
 # JS 1 -----------------------------------------------------------
 # const power = ( item ) => { return item*item }
 # list_a.map( power )
