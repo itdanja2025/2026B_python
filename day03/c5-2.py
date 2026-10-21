@@ -65,3 +65,30 @@ def 구구단( 단=2 , 곱= 1 ) :
 구구단( )
 # 2단~3단 까지 / 1~4곱 까지 의 반복문 순서도 작성
 
+# 297p. 피보나치수열1  -------------------
+counter = 0 
+def fibonacci( n ) : 
+    print( "fibonacci({})를 구합니다".format(n) )
+    global counter
+    counter += 1 
+    if n == 1 :
+        return 1 
+    if n == 2 : 
+        return 1 
+    else : 
+        return fibonacci( n-1 ) + fibonacci( n - 2 )
+print( fibonacci( 5 ) ) 
+
+# 301p. 피보나치수열2 메모화 -------------
+dictionary = { 1 : 1 , 2 : 1 }
+def fibonacci2( n ) : 
+    if n in dictionary :
+        return dictionary[n]
+    else : 
+        output = fibonacci2( n - 1 ) + fibonacci2( n - 2 )
+        dictionary[n] = output
+        return output
+print( fibonacci2( 5 ) ) 
+
+
+    
