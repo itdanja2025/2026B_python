@@ -37,7 +37,18 @@ else :
 finally : # 무조건 실행되는 코드
     print( "코드가 끝났습니다.")
 
-
+# 예6] fina lly 활용예 
+try :  # open( 파일명 , 옵션 ) 파일불러오기 함수 # w옵션:파일이 없으면 생성 
+    file = open( "info.txt" ,"w") 
+    예외.발생해라() # 일부러 예외 발생!!!*****
+    # try 에서 만약에 예외가 발생하면 발생한 코드 이후는 실행안됨. ->except이동
+    #file.close() # 파일.close() : 파일닫기 
+except :
+    print( "예외가 발생 했습니다.")
+finally :
+    file.close() # 파일.close() : 파일닫기 
+print( file.closed ) 
+# finally 사용: return함수종료, break반목문종료 + finally 조합 
 
 
 
