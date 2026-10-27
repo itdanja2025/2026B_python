@@ -15,14 +15,3 @@ print( np.min( y , axis= 0 ) , np.max( y , axis = 1) ) # axis = 0 열마다 = 1 
 print( np.argmin( y ) , np.argmax( y ) )
 print( np.sum( y , axis= 0 ) , np.mean( y , axis=0) , np.median( y , axis=1) )
 print( np.var( x ) , np.std( x ) ,  np.sqrt( x ) )
-
-
-
-
-
-
-
-
-
-
-
