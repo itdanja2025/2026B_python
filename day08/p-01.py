@@ -80,6 +80,43 @@ df['passed'] = False
 df.loc[ df['score'] > 70 , 'passed' ] = True 
 print( df )
 
+# 12] 컬럼명 변경, df = df.rename( columns={'기존열이름' : '새로운컬럼명'} )
+df = df.rename( columns= { 'city' : '도시' , 'age' : '나이' } )
+df.info() 
+# 13] 집계 , df.describe() , df['열이름'].통계함수()
+print( df.describe() )
+print( df['나이'].sum() )
+print( df['passed'].value_counts() ) # 자료 빈도 수 
+
+# 14] 합치기/병합 
+df1 = pd.DataFrame({'ID': [1, 2, 3], 'Score': [90, 80, 85]})
+df2 = pd.DataFrame({'ID': [4, 5, 6], 'Score': [75, 95, 88]})
+# 연결 pd.concat( [df1 , df1] , axis = 0세로연결1가로연결 , ignore_index=True )
+new_df = pd.concat( [df1, df2] , axis= 0 , ignore_index=True )
+print( new_df )
+new_df = pd.concat( [df1, df2] , axis= 1 )
+print( new_df )
+# 병합 : 교집합(공통 컬럼) , pd.merge( df1 , df2 , on = '공통컬럼명' , how='inner/outer/left/right' )
+df_info = pd.DataFrame({'ID': [1, 2, 3], 'Name': ['Ant', 'Bee', 'Cat']})
+df_score = pd.DataFrame({'ID': [2, 3, 4], 'Score': [88, 92, 85]})
+new_df = pd.merge( df_info , df_score , on = 'ID' , how='inner' ) # 교집합 
+print( new_df ) 
+new_df = pd.merge( df_info , df_score , on = 'ID' , how='outer' ) # 교집합 
+print( new_df ) # NaN : 정의가 없는 자료 # 숫자가 아니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
