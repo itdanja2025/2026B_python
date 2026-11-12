@@ -29,16 +29,3 @@ async def products( product: dict ) : # 전달받은 body본문(json) 값을 파
     product['msg'] = "*본문통신성공*"
     return product 
 # 요청/테스트 에서 body(본문)에 { "name":"유재석","age":40} 으로 보내보기 
-
-
-
-
-
-
-
-
-
-
-
-
-
