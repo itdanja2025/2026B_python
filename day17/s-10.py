@@ -39,3 +39,14 @@ for name, model in models.items() :
     print( "> train acc: ", model.score( X_train, Y_train ) )
     print( "> test acc: ", model.score( X_test, Y_test ) )
     print( "> f1 score: ", f1_score( Y_test , Y_pred , average="macro" ) )
+
+# ============= 모델명 :  XGBoost
+# > 학습 소요시간:  0.27927613258361816 초
+# > train acc:  0.8795458918606889
+# > test acc:  0.8553846153846154
+# > f1 score:  0.7995742182246408
+# ============= 모델명 :  LightGBM
+# > 학습 소요시간:  0.12065553665161133 초          빠르다.
+# > train acc:  0.8795458918606889                  
+# > test acc:  0.8607692307692307                   과대적합 우수
+# > f1 score:  0.8068193666663657                   스코어 우수 
