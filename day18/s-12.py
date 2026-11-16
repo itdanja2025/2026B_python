@@ -72,3 +72,5 @@ study.optimize( objective , n_trials=20 ) # -> 반복 수 만큼 목적함수 �
 print( '최적 하이퍼파라미터:', study.best_params )
 optimal_model = study.best_trial.user_attrs['best_n_estimators']
 print( '최적 트리: ', optimal_model )
+# 최적 하이퍼파라미터: {'learning_rate': 0.0655020265678206, 'num_leaves': 16, 'max_depth': 6, 'min_child_samples': 50, 'subsample': 0.9989859135407586, 'colsample_bytree': 0.9939374085734083}
+# 최적 트리:  174
