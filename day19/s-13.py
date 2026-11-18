@@ -110,6 +110,46 @@ print( X_train[ ['PC1','PC2','PCA_cluster']].head(10) )
 # 클러스터1는 하(PC1에서 음의 양수 이므로) 
 # 클러스터0는 중(PC1에서 0에 가까운 평균 이므로) 
 
+# 7) 이상치 제외한 G3 평균 계산 
+normal_clusters = X_train[ X_train['PCA_cluster'] != -1 ] # 이상치 제외
+# pd.groupby('성별')['국어점수'].mean(): 성별/열 그룹/끼리 국어점수/특정 열에 평균/집계   
+cluster_means = normal_clusters.groupby('PCA_cluster')['G3'].mean()
+sorted_cluster = cluster_means.sort_values( ascending = True ) # True 오름차순 False 내림차순
+print( sorted_cluster )
+# PCA_cluster     클러스터별 G3 평균점수 == PC1 가중치 : 예측 비교 
+# 1     9.873239
+# 0    12.500000
+# 2    13.641509
+
+# 8) 라벨링
+# enumerate( ) # range( )
+labels = { }
+for idx, cluter_id in enumerate( sorted_cluster.index , start=1 ) :
+    labels[ cluter_id ] = f'Level{idx}'
+labels[-1] = 'Outlier' # 이상치는 리스트 가장 뒤에 
+# {1: 'Level1', 0: 'Level2', 2: 'Level3', -1: 'Outlier'}
+X_train['pca_cluster_label'] = X_train['PCA_cluster'].replace( labels )
+print( X_train ) # 군집화한 결과 가지고 추후에 지도학습
+# 지도학습에서 성능 향상 하기 위한 방법: 0)전처리 1)하이퍼파라미터 2) 파생변수 
+
+# 9) PCA 시각화
+for lbl in list( labels.values() ) : 
+    sub = X_train[ X_train['pca_cluster_label'] == lbl ]
+    if lbl =='Outlier' : 
+        plt.scatter( sub['PC1'], sub['PC2'], c='red', marker='*',label=lbl )
+    else : 
+        plt.scatter( sub['PC1'], sub['PC2'], marker='o',label=lbl)
+plt.legend()
+plt.show()
+# PCA 시각화 하게 되면 특성들을 2가지(2D) 형태 표현 가능하다.
+# 현재 주성분 PC1(G1 G2 G3) , PC2(공부시간,결석일수)
+
+
+
+
+
+
+
 
 
 
