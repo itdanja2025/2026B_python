@@ -53,14 +53,45 @@ print( test_word )
 print( tokenize_kiwi( test_word )  )
 # 마감이 안좋아요 실밥도 많고 바느질도 부족한 부분이 몇군데 있네요 교환받기 귀찮아서 그냥 씁니다
 # ['마감', '바느질', '부족', '부분', '교환', '귀찮다']
+### 전처리 : 학습 하기 전에 문장들을 단어로 분리 ### 
+# 6. 특성 과 타깃 분리 
+from sklearn.model_selection import train_test_split
+X_train,X_test,Y_train,Y_test=train_test_split( 
+    # X = 리뷰 , Y = 평점라벨링( 0:부정 1:긍정 )
+    df_sample['cleaned_review'],df_sample['label'],
+    test_size=0.2, random_state=42, stratify=df_sample['label'] ) 
+# 7. 리뷰 --> 희소 행렬(벡터) 변환
+from sklearn.feature_extraction.text import TfidfVectorizer
+# TfidfVectorizer( tokenizer= 토큰나이즈함수  )
+tfidf = TfidfVectorizer( 
+    tokenizer= tokenize_kiwi, # 생략시 공백/띄어쓰기 기준으로 분리 # 직접만든함수
+    token_pattern=None , # 실행중 발생 하는 로그 비활성화  
+)
+X_train_tfidf = tfidf.fit_transform( X_train ) # 학습 -> 변환 # 학습용 
+X_test_tfidf = tfidf.transform( X_test ) # 테스트용 
+print( X_train_tfidf.shape ) # (4000, 4106)  # (행개수, 열개수) : 2차원
+print( X_test_tfidf.shape )  # (1000, 4106)  # (문장수, 총단어수  ) : 2차원
+# 안녕 사과 바나나 하세요
+# 안녕 딸기 하세요
+# (2, 5)
+# 안녕 사과 바나나 하세요 딸기
+#  1     1   1      1     0
+#  1     0   0      1     1 
+print( '추출한 단어 10개만 확인: ', tfidf.get_feature_names_out()[ :10 ] )
+# ['가게' '가겨' '가격' '가격대' '가관' '가구' '가까이' '가끔' '가늘다' '가능']
+#(문제점) 오타 등 으로 유사한 단어들을 분별 불가능 해서 다른 단어로 취급
+#(해결) 유사도 거리 계산 ( 임베딩/BERT )
 
-
-
-
-
-
-
-
+# 8. 긍정/부정 : 감성분석
+from sklearn.linear_model import LogisticRegression # 실무적으로 lightGBM
+model = LogisticRegression( C=1.0 , max_iter=1000, random_state=42 )
+model.fit( X_train_tfidf , Y_train ) # 분류 모델 학습 
+print( model.score( X_train_tfidf , Y_train ) ) # 0.89025
+print( model.score( X_test_tfidf , Y_test ) )   # 0.816
+Y_pred = model.predict( X_test_tfidf ) # 0.8087318087318087
+from sklearn.metrics import f1_score
+print( 'f1 : ' , f1_score( Y_test , Y_pred ) )
+print( X_train_tfidf.toarray()[0] ) # 수치 밀집행렬
 
 
 
